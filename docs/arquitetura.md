@@ -135,11 +135,12 @@ O valor `raw` é ilustrativo. Não apresentar ppm como medição calibrada antes
   "command_id": "pump-001",
   "state": "ON",
   "source": "dashboard",
+  "issued_at": 1795615200000,
   "ttl_ms": 10000
 }
 ```
 
-O dispositivo deve validar tópico, formato, estado permitido e validade temporal. Comandos não devem ser publicados com retenção.
+O dispositivo deve validar tópico, formato, estado permitido e validade temporal. Comandos não devem ser publicados com retenção. O Node-RED deve incluir `issued_at` (Unix epoch em milissegundos) e `ttl_ms`; o firmware rejeita comandos expirados ou recebidos antes da sincronização NTP. O callback PubSubClient não expõe o bit RETAIN ao sketch, portanto a aplicação publicadora deve garantir `retain=false`.
 
 ## 6. Intervalos e QoS propostos
 
