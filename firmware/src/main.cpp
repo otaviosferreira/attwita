@@ -159,11 +159,7 @@ void publishCommandAck(const char* commandId, const char* result, const char* re
 }
 
 void handleCommand(const String& incomingTopic, const byte* payload,
-                   unsigned int length, bool retained) {
-  if (retained) {
-    publishEvent("warning", "RETAINED_COMMAND_REJECTED", "Comando retido rejeitado.");
-    return;
-  }
+                   unsigned int length) {
   JsonDocument doc;
   if (deserializeJson(doc, payload, length)) {
     publishEvent("error", "INVALID_JSON", "Payload JSON invalido.");
@@ -199,7 +195,7 @@ void handleCommand(const String& incomingTopic, const byte* payload,
 }
 
 void mqttCallback(char* rawTopic, byte* payload, unsigned int length) {
-  handleCommand(String(rawTopic), payload, length, false);
+  handleCommand(String(rawTopic), payload, length);
 }
 
 void connectWiFi() {
