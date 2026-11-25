@@ -31,25 +31,6 @@
       }
     },
     {
-      "id": "rTop",
-      "type": "wokwi-resistor",
-      "left": -70,
-      "top": 180,
-      "rotate": 90,
-      "attrs": {
-        "value": "12k"
-      }
-    },
-    {
-      "id": "rBottom",
-      "type": "wokwi-resistor",
-      "left": 20,
-      "top": 260,
-      "attrs": {
-        "value": "20k"
-      }
-    },
-    {
       "id": "relayPump",
       "type": "wokwi-relay-module",
       "left": 300,
@@ -148,30 +129,6 @@
       []
     ],
     [
-      "gas:AOUT",
-      "rTop:1",
-      "green",
-      []
-    ],
-    [
-      "rTop:2",
-      "esp:34",
-      "green",
-      []
-    ],
-    [
-      "rTop:2",
-      "rBottom:1",
-      "green",
-      []
-    ],
-    [
-      "rBottom:2",
-      "esp:GND.1",
-      "black",
-      []
-    ],
-    [
       "relayPump:VCC",
       "esp:5V",
       "red",
@@ -253,6 +210,12 @@
       "ledAlarm:C",
       "esp:GND.1",
       "black",
+      []
+    ],
+    [
+      "gas:AOUT",
+      "esp:34",
+      "green",
       []
     ]
   ]
