@@ -44,7 +44,7 @@ Fontes:
 ## Cuidados para o circuito físico
 
 1. Confirmar a placa ESP32 exata e a pinagem real antes de replicar o diagrama.
-2. O MQ-2 é alimentado em 5 V; seu sinal analógico deve ser condicionado para respeitar o limite do ADC do ESP32. O divisor desenhado é uma proposta de simulação e precisa ser recalculado considerando a saída real do módulo, tolerância dos resistores e faixa ADC.
+2. O MQ-2 é alimentado em 5 V. No diagrama Wokwi, AOUT está ligado diretamente ao GPIO 34 apenas para exercitar a leitura simulada. **Essa ligação não deve ser copiada para hardware físico.** O sinal real precisa de condicionamento/divisor calculado para nunca exceder a faixa do ADC. A documentação do Wokwi alerta que sua simulação analógica é básica e não simula resistores em conjunto com componentes analógicos; por isso o divisor não está representado como circuito funcional.
 3. Confirmar se o módulo de relé aceita nível lógico de 3,3 V e se é ativo em nível alto ou baixo.
 4. Motores DC precisam de driver dimensionado, proteção contra cargas indutivas, fonte apropriada e cabeamento compatível.
 5. O IRFZ44N não deve ser tratado como MOSFET logic-level de 3,3 V.
@@ -52,4 +52,4 @@ Fontes:
 
 ## Estado dos testes
 
-Até a validação externa no simulador, os arquivos são artefatos preparados e inspecionados estaticamente. A criação dos arquivos não comprova que o circuito foi executado no Wokwi nem que os componentes funcionam em hardware real.
+Até a validação externa no simulador, os arquivos são artefatos preparados e inspecionados estaticamente. A criação dos arquivos não comprova que o circuito foi executado no Wokwi nem que os componentes funcionam em hardware real. A leitura analógica direta do MQ-2 é uma simplificação exclusiva do Wokwi, não um esquema físico seguro.
