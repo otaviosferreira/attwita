@@ -10,7 +10,7 @@ Firmware inicial para ESP32 com Arduino framework / PlatformIO.
 - Leitura DHT22 e MQ-2 a cada 5 segundos.
 - Publicação de temperatura, umidade e ADC bruto do MQ-2.
 - Recebimento de comandos para bomba, ventilador, relés e buzzer.
-- Validação de JSON, estado ON/OFF, NTP, TTL e mensagens retidas.
+- Validação de JSON, estado ON/OFF, NTP e TTL.
 - ACK de comandos aplicados/rejeitados.
 - Estado de atuadores e status do dispositivo.
 - Last Will and Testament (LWT).
@@ -61,7 +61,7 @@ Use o IP LAN do broker Mosquitto; `localhost` não representa o computador do br
 }
 ```
 
-Para `actuators/relay/set`, incluir `"channel": 1` ou `"channel": 2`. O ESP32 exige relógio sincronizado via NTP, rejeita mensagens retidas e TTL nulo ou superior a 60 segundos. O Node-RED deve publicar comandos sem retain.
+Para `actuators/relay/set`, incluir `"channel": 1` ou `"channel": 2`. O ESP32 exige relógio sincronizado via NTP e rejeita TTL nulo, expirado ou superior a 60 segundos. O callback da biblioteca PubSubClient não informa ao sketch o bit RETAIN da mensagem recebida; por isso, o firmware não consegue detectar diretamente comandos retidos. O Node-RED deve publicar comandos sempre com retain=false e o broker deve ser configurado/testado para esse fluxo.
 
 ## Limitações e segurança
 
